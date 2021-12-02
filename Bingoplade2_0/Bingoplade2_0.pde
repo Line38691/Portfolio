@@ -12,7 +12,7 @@ int[][] bingoPlade = new int[9][3];
 
 void setup() {
 size(600,600);
-textSize(32);
+textSize(20);
 fill(0);
   //funktionen findTreTal returnerer en kolonne med tre tal. En bingoPlade består af 9 kolonner - get it? :)
 
@@ -37,12 +37,17 @@ fill(0);
 
 
 int[] Nuller=new int[4];
-for(int i=0; i<Nuller.length; i++){
+for(int i=0; i<3; i++){
+  Nuller=findFireTal();
+  
 while(findEns(Nuller)){
 Nuller=findFireTal();
+Nuller =sorter(Nuller);
+}
+for(int j=0; j<Nuller.length; j++){
+  bingoPlade[Nuller[j]][i]=0;
 }
 }
-
 
   // her printer jeg bingopladen til consol
   for (int i=0; i<bingoPlade.length; i++) {
@@ -52,7 +57,7 @@ Nuller=findFireTal();
   println();
 }
 void draw() {
-  background(46,79,255);
+  background(100,32,255);
   udskriv();
 }
 
@@ -69,7 +74,7 @@ int[] findTreTal(int faktor) {
 
 int[] findFireTal() {
   int[] tal = new int[4];
-  for (int i=0; i < 3; i++) {
+  for (int i=0; i < tal.length; i++) {
     tal[i]  = (int)random(0, 9);
   }
   return tal;
