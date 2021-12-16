@@ -1,7 +1,5 @@
-
-
-
-import java.util.Arrays; //<>// //<>//
+ //<>//
+import java.util.Arrays; //<>//
 
 // Array til at lave kolonne
 int[] kolonne = new int[3];
@@ -11,27 +9,43 @@ int[][] bingoPlade = new int[9][3];
 
 
 void setup() {
-
+size(600,600);
+textSize(20);
+fill(0);
   //funktionen findTreTal returnerer en kolonne med tre tal. En bingoPlade består af 9 kolonner - get it? :)
 
   // ****Lav en lykke som kan gentages 9 gange. Her starter din løkke 
   
-    
+    for (int i = 0 ; i<bingoPlade.length;i++){
     // start med at finde tre tal
-    int j=0;
-    kolonne = findTreTal(j);
+    kolonne = findTreTal(i);
     while (findEns(kolonne)) {
-      kolonne = findTreTal(j);
+      kolonne = findTreTal(i);
     }
+    
     
     // sorter kolonne stigende 
     kolonne = sorter(kolonne);
-    
+   
     // **** put kolonne i bingPlade[i] det gør du her
-  
-
+  bingoPlade[i] = (kolonne);
+    }
    
   // her slutter din løkke
+
+
+int[] Nuller=new int[4];
+for(int i=0; i<3; i++){
+  Nuller=findFireTal();
+  
+while(findEns(Nuller)){
+Nuller=findFireTal();
+Nuller =sorter(Nuller);
+}
+for(int j=0; j<Nuller.length; j++){
+  bingoPlade[Nuller[j]][i]=0;
+}
+}
 
   // her printer jeg bingopladen til consol
   for (int i=0; i<bingoPlade.length; i++) {
@@ -41,6 +55,8 @@ void setup() {
   println();
 }
 void draw() {
+  background(100,32,255);
+  udskriv();
 }
 
 int[] findTreTal(int faktor) {
@@ -53,10 +69,20 @@ int[] findTreTal(int faktor) {
 }
 
 
+
+int[] findFireTal() {
+  int[] tal = new int[4];
+  for (int i=0; i < tal.length; i++) {
+    tal[i]  = (int)random(0, 9);
+  }
+  return tal;
+}
+
+
 int[] sorter(int[] tal) {
   int i=0;
   //for (int i =0; i <tal.length-1; i++) {
-  while (i<2) {
+  while (i<tal.length-1) {
     if (tal[i]>tal[i+1]) {
       int temp = tal[i];
       tal[i]=tal[i+1];
@@ -87,5 +113,9 @@ void udskriv(){
 // ****gentag så jænge i er mindre end ni 
 // ****gentag så jænge j er mindre end 3
 // ****text(string,x-værdi+10*i,y-værdi+10*j);
-
+for (int i=0; i<bingoPlade.length; i++){
+  for(int j =0;j<bingoPlade[i].length; j++){
+    text(bingoPlade[i][j],100+i*40,100+j*40);
+  }
+}
 }
