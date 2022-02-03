@@ -8,7 +8,7 @@ Trekant t;
 int whatShapeToDraw=0;
 
 void setup() {
-  size (2200,985);
+  size (2200,991);
 }
 
 void draw() {
