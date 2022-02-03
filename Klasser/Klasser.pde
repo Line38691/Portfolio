@@ -1,32 +1,42 @@
 
-// initiering af variablen f
+// initiering af variablerne f, c, t, r
 Firkant f;
 Cirkel c;
 Trekant t;
-Rektangel r;
+//Rektangel r;
+
+int whatShapeToDraw=0;
 
 void setup() {
-  size (600, 400);
+  size (2200,985);
 }
 
 void draw() {
-  // initiering af objektet f
+  // initiering af objektet f,c , t, r
   f = new Firkant();
-  // tegner firkanten på canvas
-  f.drawFirkant();
- 
-  // initiering af objektet f
   c = new Cirkel();
-  // tegner firkanten på canvas
-  c.drawCirkel();
- 
-  // initiering af objektet f
   t = new Trekant();
-  // tegner firkanten på canvas
-  t.drawTrekant();
+//r = new Rektangel();
   
-  // initiering af objektet f
-  r = new Rektangel();
-  // tegner firkanten på canvas
-  r.drawRektangel();
+  // tegner firkante, cirklen trekanten og rektangelen på canvas
+
+   if (whatShapeToDraw == 0) {
+    f.drawFirkant();
+  } else if (whatShapeToDraw == 1) {
+    c.drawCirkel();
+  }
+  if (whatShapeToDraw == 2) {
+    t.drawTrekant();
+    whatShapeToDraw=-1;
+  }
+  /*
+if (whatShapeToDraw == 3 ){
+    r.drawRektangel();
+    whatShapeToDraw=-2;
+}*/
+  whatShapeToDraw++;
+}
+
+void mousePressed() {
+  background(225);
 }
